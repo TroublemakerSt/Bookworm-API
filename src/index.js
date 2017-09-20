@@ -7,6 +7,7 @@ import auth from './routes/auth';
 
 const app = express();
 app.use(bodyParser.json());
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/bookworm', { useMongoClient: true });
 
 app.use('/api/auth/', auth);

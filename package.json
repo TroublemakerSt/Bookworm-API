@@ -21,6 +21,8 @@
     "prettier": "^1.7.0"
   },
   "dependencies": {
+    "bcrypt": "^1.0.3",
+    "bluebird": "^3.5.0",
     "body-parser": "^1.18.1",
     "express": "^4.15.4",
     "mongoose": "^4.11.11"

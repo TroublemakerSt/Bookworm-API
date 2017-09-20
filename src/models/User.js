@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 
 // TODO: add uniqueness and email validation to email field
 const schema = new mongoose.Schema(
@@ -8,5 +9,9 @@ const schema = new mongoose.Schema(
   },
   { timestamps: true },
 );
+
+schema.methods.isValidPassword = function isValidPassword(password) {
+  return bcrypt.compareSync(password, this.passwordHash);
+};
 
 export default mongoose.model('User', schema);
