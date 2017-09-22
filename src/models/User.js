@@ -14,4 +14,8 @@ schema.methods.isValidPassword = function isValidPassword(password) {
   return bcrypt.compareSync(password, this.passwordHash);
 };
 
+schema.methods.checkPass = function checkPass() {
+  return console.log(this.passwordHash);
+};
+
 export default mongoose.model('User', schema);

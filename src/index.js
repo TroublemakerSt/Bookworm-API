@@ -2,12 +2,13 @@ import express from 'express';
 import path from 'path';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import Promise from 'bluebird';
 
 import auth from './routes/auth';
 
 const app = express();
 app.use(bodyParser.json());
-mongoose.Promise = global.Promise;
+mongoose.Promise = Promise;
 mongoose.connect('mongodb://localhost/bookworm', { useMongoClient: true });
 
 app.use('/api/auth/', auth);
