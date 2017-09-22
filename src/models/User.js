@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 // TODO: add uniqueness and email validation to email field
 const schema = new mongoose.Schema(
@@ -16,6 +17,22 @@ schema.methods.isValidPassword = function isValidPassword(password) {
 
 schema.methods.checkPass = function checkPass() {
   return console.log(this.passwordHash);
+};
+
+schema.methods.toAuthJSON = function toAuthJSON() {
+  return {
+    email: this.email,
+    token: this.generateJWT(),
+  };
+};
+
+schema.methods.generateJWT = function generateJWT() {
+  return jwt.sign(
+    {
+      email: this.email,
+    },
+    'secretkey',
+  );
 };
 
 export default mongoose.model('User', schema);
