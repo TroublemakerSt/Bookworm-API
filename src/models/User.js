@@ -41,8 +41,9 @@ schema.methods.generateConfirmationUrl = function generateConfirmationUrl() {
 };
 
 schema.methods.generateResetPasswordLink = function generateResetPasswordLink() {
-  return `${process.env
-    .HOST}/reset_password/${this.generateResetPasswordToken()}`;
+  return `${
+    process.env.HOST
+  }/reset_password/${this.generateResetPasswordToken()}`;
 };
 
 schema.methods.toAuthJSON = function toAuthJSON() {
